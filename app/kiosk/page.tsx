@@ -94,7 +94,7 @@ export default function KioskHomePage() {
                   transition={{ delay: idx * 0.05 }}
                 >
                   <Link
-                    href={`/kiosk/menu/${menu.id}`}
+                    href={`/kiosk/menu?id=${menu.id}`}
                     className="card-premium group block h-full p-0 overflow-hidden"
                   >
                     {/* Image Area */}

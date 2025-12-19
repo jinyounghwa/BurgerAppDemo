@@ -64,7 +64,7 @@ export default function CouponsPage() {
             {availableCoupons.map((coupon) => (
               <Link
                 key={coupon.id}
-                href={`/customer/coupons/${coupon.id}`}
+                href={`/customer/coupons/detail?id=${coupon.id}`}
                 className="block bg-gradient-to-br from-secondary to-yellow-50 rounded-lg p-4 hover:shadow-md transition-shadow active:scale-95"
               >
                 <div className="flex items-start justify-between">
