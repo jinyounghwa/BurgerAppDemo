@@ -46,116 +46,114 @@ export default function CustomerDisplayPage() {
 
   // 초기 로드
   useEffect(() => {
-    let allOrders = localStorageManager.getOrders();
+    // 목업 데이터 정의
+    const mockOrders: Order[] = [
+      {
+        id: 'mock-1',
+        orderNumber: '1001',
+        customerId: undefined,
+        items: [
+          {
+            menuId: 'menu-1',
+            menuName: '와퍼',
+            quantity: 1,
+            selectedOptions: ['치즈 추가'],
+            optionDetails: ['치즈 추가'],
+            price: 7000,
+          },
+        ],
+        totalAmount: 7000,
+        discountAmount: 0,
+        finalAmount: 7000,
+        status: 'READY',
+        createdAt: new Date(Date.now() - 5 * 60000).toISOString(),
+      },
+      {
+        id: 'mock-2',
+        orderNumber: '1002',
+        customerId: undefined,
+        items: [
+          {
+            menuId: 'menu-2',
+            menuName: '치즈버거',
+            quantity: 2,
+            selectedOptions: [],
+            optionDetails: [],
+            price: 11000,
+          },
+        ],
+        totalAmount: 11000,
+        discountAmount: 0,
+        finalAmount: 11000,
+        status: 'READY',
+        createdAt: new Date(Date.now() - 3 * 60000).toISOString(),
+      },
+      {
+        id: 'mock-3',
+        orderNumber: '1003',
+        customerId: undefined,
+        items: [
+          {
+            menuId: 'menu-3',
+            menuName: '불고기버거',
+            quantity: 1,
+            selectedOptions: [],
+            optionDetails: [],
+            price: 5800,
+          },
+          {
+            menuId: 'menu-4',
+            menuName: '콜라',
+            quantity: 1,
+            selectedOptions: [],
+            optionDetails: [],
+            price: 2500,
+          },
+        ],
+        totalAmount: 8300,
+        discountAmount: 0,
+        finalAmount: 8300,
+        status: 'READY',
+        createdAt: new Date(Date.now() - 2 * 60000).toISOString(),
+      },
+      {
+        id: 'mock-4',
+        orderNumber: '1004',
+        customerId: undefined,
+        items: [
+          {
+            menuId: 'menu-5',
+            menuName: '새우버거',
+            quantity: 1,
+            selectedOptions: [],
+            optionDetails: [],
+            price: 6200,
+          },
+        ],
+        totalAmount: 6200,
+        discountAmount: 0,
+        finalAmount: 6200,
+        status: 'READY',
+        createdAt: new Date(Date.now() - 1 * 60000).toISOString(),
+      },
+    ];
 
-    // 목업 데이터가 없으면 추가
-    if (allOrders.length === 0) {
-      const mockOrders: Order[] = [
-        {
-          id: 'mock-1',
-          orderNumber: '1001',
-          customerId: undefined,
-          items: [
-            {
-              menuId: 'menu-1',
-              menuName: '와퍼',
-              quantity: 1,
-              selectedOptions: ['치즈 추가'],
-              optionDetails: ['치즈 추가'],
-              price: 7000,
-            },
-          ],
-          totalAmount: 7000,
-          discountAmount: 0,
-          finalAmount: 7000,
-          status: 'READY',
-          createdAt: new Date(Date.now() - 5 * 60000).toISOString(),
-        },
-        {
-          id: 'mock-2',
-          orderNumber: '1002',
-          customerId: undefined,
-          items: [
-            {
-              menuId: 'menu-2',
-              menuName: '치즈버거',
-              quantity: 2,
-              selectedOptions: [],
-              optionDetails: [],
-              price: 11000,
-            },
-          ],
-          totalAmount: 11000,
-          discountAmount: 0,
-          finalAmount: 11000,
-          status: 'READY',
-          createdAt: new Date(Date.now() - 3 * 60000).toISOString(),
-        },
-        {
-          id: 'mock-3',
-          orderNumber: '1003',
-          customerId: undefined,
-          items: [
-            {
-              menuId: 'menu-3',
-              menuName: '불고기버거',
-              quantity: 1,
-              selectedOptions: [],
-              optionDetails: [],
-              price: 5800,
-            },
-            {
-              menuId: 'menu-4',
-              menuName: '콜라',
-              quantity: 1,
-              selectedOptions: [],
-              optionDetails: [],
-              price: 2500,
-            },
-          ],
-          totalAmount: 8300,
-          discountAmount: 0,
-          finalAmount: 8300,
-          status: 'READY',
-          createdAt: new Date(Date.now() - 2 * 60000).toISOString(),
-        },
-        {
-          id: 'mock-4',
-          orderNumber: '1004',
-          customerId: undefined,
-          items: [
-            {
-              menuId: 'menu-5',
-              menuName: '새우버거',
-              quantity: 1,
-              selectedOptions: [],
-              optionDetails: [],
-              price: 6200,
-            },
-          ],
-          totalAmount: 6200,
-          discountAmount: 0,
-          finalAmount: 6200,
-          status: 'READY',
-          createdAt: new Date(Date.now() - 1 * 60000).toISOString(),
-        },
-      ];
+    // localStorage 전체 초기화 및 목업 데이터 설정
+    localStorage.clear();
+    mockOrders.forEach((order) => {
+      localStorageManager.addOrder(order);
+    });
 
-      // localStorage에 목업 데이터 저장
-      mockOrders.forEach((order) => {
-        localStorageManager.addOrder(order);
-      });
-
-      allOrders = mockOrders;
-    }
-
+    // 모든 주문 조회
+    const allOrders = mockOrders;
     const readyOrders = allOrders.filter((o) => o.status === 'READY');
+
     setWaitingOrders(readyOrders);
 
     // 첫 번째 READY 주문을 현재 호출로 설정
-    if (readyOrders.length > 0 && !currentOrder) {
+    if (readyOrders.length > 0) {
       setCurrentOrder(readyOrders[0]);
-      setDisplayedOrders((prev) => new Set([...prev, readyOrders[0].orderNumber]));
+      setDisplayedOrders(new Set([readyOrders[0].orderNumber]));
     }
 
     setMounted(true);
