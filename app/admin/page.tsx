@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
   const readyCount = orders.filter((o) => o.status === 'READY').length;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-6 pt-20">
+    <div className="min-h-screen bg-gray-100 p-4 sm:p-6 pt-24">
       <div className="w-full max-w-7xl mx-auto">
         {/* 헤더 */}
         <div className="flex items-center gap-4 mb-8">
