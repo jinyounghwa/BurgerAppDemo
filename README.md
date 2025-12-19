@@ -97,7 +97,7 @@ BurgerAppDemo/
 
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/BurgerAppDemo.git
+git clone https://github.com/jinyounghwa/BurgerAppDemo.git   
 cd BurgerAppDemo
 
 # 의존성 설치
@@ -244,28 +244,6 @@ npm run build
 netlify deploy --prod
 ```
 
-## 📚 추가 문서
-
-자세한 프로젝트 문서는 [CLAUDE.md](./CLAUDE.md)를 참고하세요.
-
-## 🔮 향후 기능
-
-### Phase 2: 실시간 기능
-- WebSocket 기반 실시간 동기화
-- 푸시 알림 시스템
-- 고객 위치 기반 서비스
-
-### Phase 3: 백엔드 연동
-- REST API/GraphQL 구축
-- 데이터베이스 통합 (PostgreSQL)
-- 실제 결제 연동 (PG사)
-- 사용자 인증 (NextAuth.js)
-
-### Phase 4: 고급 기능
-- AI 메뉴 추천
-- 음성 주문 시스템
-- 모바일 앱 (React Native)
-- 다국어 지원
 
 ## 💡 주의사항
 
@@ -292,8 +270,8 @@ MIT License - 자유롭게 사용 및 수정 가능
 
 ---
 
-**제작일**: 2024년 12월 19일
+**제작일**: 2025년 12월 19일
 **버전**: 1.0.0
-**작성자**: 진영화
+**작성자**: 진영화-회사구함(timotolkie@gmail.com)
 
 > 🍔 BurgerAppDemo로 완전한 주문 생태계를 경험해보세요!
