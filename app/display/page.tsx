@@ -166,7 +166,7 @@ export default function CustomerDisplayPage() {
   const averageWaitTime = 3; // 고정값 (실제 구현시 계산)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 flex flex-col items-center justify-center p-8">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-amber-100 flex flex-col items-center justify-center p-8 pt-[calc(2rem+50px)]">
       <audio ref={audioRef} />
 
       {/* 호출 중인 주문 */}
