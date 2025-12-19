@@ -1,6 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { RootLayoutClient } from '@/components/layout/RootLayoutClient';
 import './globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: 'BurgerAppDemo - 버거 주문 시스템',
@@ -38,7 +44,6 @@ export const metadata: Metadata = {
   },
 
   // Additional Meta Tags
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=5',
   icons: {
     icon: [{ url: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23d62300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.8V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v9.8M6 13.8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2M6 13.8h12M9 19V5M15 19V5"/></svg>' }],
   },
