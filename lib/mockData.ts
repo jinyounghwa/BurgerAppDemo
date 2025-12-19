@@ -1,0 +1,311 @@
+import { Customer, Coupon, Menu, Order } from '@/types/index';
+
+export const mockCustomers: Customer[] = [
+  {
+    id: 'customer-1',
+    name: '홍길동',
+    phone: '010-1234-5678',
+    points: 1234,
+    grade: 'GOLD',
+    createdAt: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: 'customer-2',
+    name: '김영희',
+    phone: '010-2345-6789',
+    points: 5678,
+    grade: 'VIP',
+    createdAt: '2023-06-15T00:00:00Z',
+  },
+  {
+    id: 'customer-3',
+    name: '이순신',
+    phone: '010-3456-7890',
+    points: 456,
+    grade: 'SILVER',
+    createdAt: '2024-09-01T00:00:00Z',
+  },
+];
+
+export const mockCoupons: Coupon[] = [
+  {
+    id: 'coupon-1',
+    customerId: 'customer-1',
+    code: 'WHOPPER2000',
+    name: '와퍼 2,000원 할인',
+    discount: 2000,
+    type: 'AMOUNT',
+    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    isUsed: false,
+  },
+  {
+    id: 'coupon-2',
+    customerId: 'customer-1',
+    code: 'CHEESE10',
+    name: '치즈버거 10% 할인',
+    discount: 10,
+    type: 'PERCENT',
+    expiresAt: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString(),
+    isUsed: false,
+  },
+  {
+    id: 'coupon-3',
+    customerId: 'customer-2',
+    code: 'SET5000',
+    name: '세트 5,000원 할인',
+    discount: 5000,
+    type: 'AMOUNT',
+    expiresAt: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+    isUsed: false,
+  },
+  {
+    id: 'coupon-4',
+    customerId: 'customer-3',
+    code: 'WELCOME500',
+    name: '환영 할인 500원',
+    discount: 500,
+    type: 'AMOUNT',
+    expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    isUsed: false,
+  },
+];
+
+export const mockMenus: Menu[] = [
+  {
+    id: 'menu-1',
+    name: '와퍼',
+    category: 'BURGER',
+    price: 6500,
+    image: '/images/menu/whopper.jpg',
+    stock: 50,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-1',
+        name: '치즈',
+        type: 'OPTIONAL',
+        choices: [
+          { id: 'choice-1', name: '치즈 추가', price: 500 },
+        ],
+      },
+      {
+        id: 'option-2',
+        name: '패티',
+        type: 'OPTIONAL',
+        choices: [
+          { id: 'choice-2', name: '패티 추가', price: 1500 },
+        ],
+      },
+      {
+        id: 'option-3',
+        name: '소스',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-3', name: '머스터드', price: 0 },
+          { id: 'choice-4', name: '케첩', price: 0 },
+          { id: 'choice-5', name: '마요네즈', price: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-2',
+    name: '치즈버거',
+    category: 'BURGER',
+    price: 5500,
+    image: '/images/menu/cheeseburger.jpg',
+    stock: 45,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-4',
+        name: '소스',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-6', name: '머스터드', price: 0 },
+          { id: 'choice-7', name: '케첩', price: 0 },
+          { id: 'choice-8', name: '마요네즈', price: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-3',
+    name: '불고기버거',
+    category: 'BURGER',
+    price: 5800,
+    image: '/images/menu/bulgogi-burger.jpg',
+    stock: 40,
+    isAvailable: true,
+    options: [],
+  },
+  {
+    id: 'menu-4',
+    name: '새우버거',
+    category: 'BURGER',
+    price: 6200,
+    image: '/images/menu/shrimp-burger.jpg',
+    stock: 35,
+    isAvailable: true,
+    options: [],
+  },
+  {
+    id: 'menu-5',
+    name: '감자튀김',
+    category: 'SIDE',
+    price: 3000,
+    image: '/images/menu/fries.jpg',
+    stock: 100,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-5',
+        name: '사이즈',
+        type: 'OPTIONAL',
+        choices: [
+          { id: 'choice-9', name: '라지 사이즈', price: 1000 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-6',
+    name: '너겟킹',
+    category: 'SIDE',
+    price: 4500,
+    image: '/images/menu/nuggets.jpg',
+    stock: 60,
+    isAvailable: true,
+    options: [],
+  },
+  {
+    id: 'menu-7',
+    name: '콜라',
+    category: 'DRINK',
+    price: 2000,
+    image: '/images/menu/coke.jpg',
+    stock: 200,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-6',
+        name: '사이즈',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-10', name: 'S (300ml)', price: 0 },
+          { id: 'choice-11', name: 'M (500ml)', price: 500 },
+          { id: 'choice-12', name: 'L (700ml)', price: 1000 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-8',
+    name: '스프라이트',
+    category: 'DRINK',
+    price: 2000,
+    image: '/images/menu/sprite.jpg',
+    stock: 150,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-7',
+        name: '사이즈',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-13', name: 'S (300ml)', price: 0 },
+          { id: 'choice-14', name: 'M (500ml)', price: 500 },
+          { id: 'choice-15', name: 'L (700ml)', price: 1000 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-9',
+    name: '와퍼세트',
+    category: 'SET',
+    price: 8500,
+    image: '/images/menu/whopper-set.jpg',
+    stock: 30,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-8',
+        name: '음료 사이즈',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-16', name: 'S (300ml)', price: 0 },
+          { id: 'choice-17', name: 'M (500ml)', price: 0 },
+          { id: 'choice-18', name: 'L (700ml)', price: 0 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'menu-10',
+    name: '치즈버거세트',
+    category: 'SET',
+    price: 7500,
+    image: '/images/menu/cheeseburger-set.jpg',
+    stock: 35,
+    isAvailable: true,
+    options: [
+      {
+        id: 'option-9',
+        name: '음료 사이즈',
+        type: 'REQUIRED',
+        choices: [
+          { id: 'choice-19', name: 'S (300ml)', price: 0 },
+          { id: 'choice-20', name: 'M (500ml)', price: 0 },
+          { id: 'choice-21', name: 'L (700ml)', price: 0 },
+        ],
+      },
+    ],
+  },
+];
+
+export const mockOrders: Order[] = [
+  {
+    id: 'order-1',
+    orderNumber: '1001',
+    customerId: 'customer-1',
+    items: [
+      {
+        menuId: 'menu-1',
+        menuName: '와퍼',
+        quantity: 1,
+        selectedOptions: ['choice-5', 'choice-1'],
+        optionDetails: ['마요네즈', '치즈 추가'],
+        price: 7000,
+      },
+    ],
+    totalAmount: 7000,
+    discountAmount: 2000,
+    finalAmount: 5000,
+    couponId: 'coupon-1',
+    status: 'COMPLETED',
+    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    completedAt: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'order-2',
+    orderNumber: '1002',
+    customerId: 'customer-2',
+    items: [
+      {
+        menuId: 'menu-9',
+        menuName: '와퍼세트',
+        quantity: 2,
+        selectedOptions: ['choice-17'],
+        optionDetails: ['M사이즈'],
+        price: 17000,
+      },
+    ],
+    totalAmount: 17000,
+    discountAmount: 0,
+    finalAmount: 17000,
+    status: 'COMPLETED',
+    createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+    completedAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
+  },
+];
